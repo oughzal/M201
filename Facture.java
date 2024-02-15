@@ -1,5 +1,11 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Facture {
     private static int cmp=1;
@@ -23,6 +29,7 @@ public class Facture {
     }
     @Override
     public String toString() {
+
         String s="Numero facture"+this.NumeroFacture+" date facture "+this.dateFacture.toString()+"\n";
         s+="Liste des achats\n";
         s+="Désignation\tremise\tprix(en DH)\tquantité\tprix Total\n";
@@ -42,4 +49,22 @@ public class Facture {
         s+="Montant de la facture :"+montantFacture();
         return s;
     }
+
+    void EnregisterAchat(String fileName){
+        achats.sort(null);
+        FileOutputStream fileOut;
+        try {
+            fileOut = new FileOutputStream(fileName);
+            try {
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(achats);
+            } catch (IOException e) {
+        
+            }
+        } catch (FileNotFoundException e) {
+            
+        }
+        
+    }
+
 }

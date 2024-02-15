@@ -1,4 +1,6 @@
-class Article{
+import java.io.Serializable;
+
+class Article  implements Serializable{
     private static int compteur = 0;
     protected int code;
     protected String Designation;
