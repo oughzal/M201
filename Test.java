@@ -1,19 +1,24 @@
+import java.sql.Date;
+import java.util.Calendar;
+
 public class Test {
     public static void main(String[] args) {
-        Article a1= new Article();
-        Article a2 = new Article();
+        Facture f1 = new Facture(new Date(0));
+        Achat achat  = new Achat();
+        Article a = new Article();
+        a.Designation = "PC";
+        a.prix = 7000;
+        achat.article = a;
+        achat.quantite = 3;
+        f1.ajouter(achat);
+        achat  = new Achat();
+        a = new Article();
+        a.Designation = "Mac";
+        a.prix = 17000;
+        achat.article = a;
+        achat.quantite = 3;
         
-        try {
-            a1.setCategorie("Dev");
-        }
-        catch(Exception e){
-
-        } 
-        catch (CategorieInvalideException e) {
-            System.out.println("categorie invalide");
-        }
-        finally{
-            
-        }
+        f1.ajouter(achat);
+        System.out.println(f1);
     }
 }

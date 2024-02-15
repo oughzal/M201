@@ -5,7 +5,7 @@ public class Facture {
     private static int cmp=1;
     public int NumeroFacture;
     public Date dateFacture;
-    public ArrayList<Achat> achats;
+    public ArrayList<Achat> achats = new ArrayList();
     
     Facture(Date date){
         this.dateFacture=date;
@@ -23,9 +23,9 @@ public class Facture {
     }
     @Override
     public String toString() {
-        String s="Numéro facture"+this.NumeroFacture+" date facture "+this.dateFacture.toString();
-        s+="Liste des achats";
-        s+="Désignation\tremise\tprix(en DH)\tquantité\tprix Total";
+        String s="Numero facture"+this.NumeroFacture+" date facture "+this.dateFacture.toString()+"\n";
+        s+="Liste des achats\n";
+        s+="Désignation\tremise\tprix(en DH)\tquantité\tprix Total\n";
         for(Achat a:achats){
             s+=a.article.Designation+"\t";
             if (a.article instanceof ArticleEnSolde) {
@@ -34,12 +34,12 @@ public class Facture {
             }else{
                 s+="0\t";
             }
-            s+=a.article.Designation+"\t";
             s+=a.article.prix+"\t";
             s+=a.quantite+"\t";
-            s+=a.article.prix*a.quantite+"\t";
+            s+=a.article.prix*a.quantite+"\n";
+
         }
-        s+="\nMontant de la facture :"+montantFacture();
+        s+="Montant de la facture :"+montantFacture();
         return s;
     }
 }
