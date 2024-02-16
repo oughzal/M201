@@ -34,8 +34,10 @@ public class Facture {
 
         String s="Numero facture"+this.NumeroFacture+" date facture "+this.dateFacture.toString()+"\n";
         s+="Liste des achats\n";
+        s+="---------------------------------------------------------------\n";
         s+=String.format("%-14s%-14s%-14s%-10s%-23s","Designation","remise","prix","quantite","prix Total");
         s+="\n";
+        s+="---------------------------------------------------------------\n";
         for(Achat a:achats){
             
             s+= String.format("%-14s",a.article.Designation);
@@ -52,7 +54,9 @@ public class Facture {
             s+="\n";
            
         }
-        s+="\nMontant de la facture :"+montantFacture();
+        s+="---------------------------------------------------------------\n";
+        s+="Montant de la facture :"+montantFacture();
+        s+="\n---------------------------------------------------------------\n";
         return s;
     }
 
