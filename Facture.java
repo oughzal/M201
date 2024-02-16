@@ -2,8 +2,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,21 +34,25 @@ public class Facture {
 
         String s="Numero facture"+this.NumeroFacture+" date facture "+this.dateFacture.toString()+"\n";
         s+="Liste des achats\n";
-        s+="Désignation\tremise\tprix(en DH)\tquantité\tprix Total\n";
+        s+=String.format("%-14s%-14s%-14s%-10s%-23s","Designation","remise","prix","quantite","prix Total");
+        s+="\n";
         for(Achat a:achats){
-            s+=a.article.Designation+"\t";
+            
+            s+= String.format("%-14s",a.article.Designation);
             if (a.article instanceof ArticleEnSolde) {
                 ArticleEnSolde a2 = (ArticleEnSolde) a.article;
-                s+=a2.remise+"\t";
+                s+= String.format("%-14s",+a2.remise);
             }else{
-                s+="0\t";
+                s+= String.format("%-14s","0");
             }
-            s+=a.article.prix+"\t";
-            s+=a.quantite+"\t";
-            s+=a.article.prix*a.quantite+"\n";
-
+            s+= String.format("%-14.2f",a.article.prix);
+            s+= String.format("%-10d",a.quantite);
+            double total = a.article.prix*a.quantite;
+            s+= String.format("%-20.2f",total);
+            s+="\n";
+           
         }
-        s+="Montant de la facture :"+montantFacture();
+        s+="\nMontant de la facture :"+montantFacture();
         return s;
     }
 
@@ -66,5 +72,7 @@ public class Facture {
         }
         
     }
+
+    
 
 }
