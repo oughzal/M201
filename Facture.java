@@ -32,8 +32,9 @@ public class Facture {
     @Override
     public String toString() {
 
-        String s="Numero facture"+this.NumeroFacture+" date facture "+this.dateFacture.toString()+"\n";
-        s+="Liste des achats\n";
+        String s=String.format("%-20s","Numero facture")+" : "+this.NumeroFacture+"\n";
+        s+=String.format("%-20s","date facture")+" : "+this.dateFacture.toString()+"\n";
+        s+=String.format("%-20s","Liste des achats")+" : "+"\n";
         s+="---------------------------------------------------------------\n";
         s+=String.format("%-14s%-14s%-14s%-10s%-23s","Designation","remise","prix","quantite","prix Total");
         s+="\n";
